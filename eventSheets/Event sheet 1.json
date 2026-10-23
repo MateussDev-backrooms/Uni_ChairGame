@@ -1,5 +1,445 @@
 {
 	"name": "Event sheet 1",
-	"events": [],
+	"events": [
+		{
+			"functionName": "SetDirectionRight",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "set-mirrored",
+					"objectClass": "PlayerChair",
+					"sid": 755038955718714,
+					"parameters": {
+						"state": "not-mirrored"
+					}
+				},
+				{
+					"id": "set-instvar-value",
+					"objectClass": "PlayerChair",
+					"sid": 683883861806715,
+					"parameters": {
+						"instance-variable": "Direction",
+						"value": "1"
+					}
+				}
+			],
+			"sid": 960515575985846
+		},
+		{
+			"functionName": "SetDirectionLeft",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "set-mirrored",
+					"objectClass": "PlayerChair",
+					"sid": 120323569597780,
+					"parameters": {
+						"state": "mirrored"
+					}
+				},
+				{
+					"id": "set-instvar-value",
+					"objectClass": "PlayerChair",
+					"sid": 960536972614131,
+					"parameters": {
+						"instance-variable": "Direction",
+						"value": "-1"
+					}
+				}
+			],
+			"sid": 414450865237431
+		},
+		{
+			"functionName": "EnterPhysicsState",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "set-enabled",
+					"objectClass": "PlayerChair",
+					"sid": 221619011362732,
+					"behaviorType": "Physics",
+					"parameters": {
+						"mode": "enabled"
+					}
+				}
+			],
+			"sid": 789909013788176
+		},
+		{
+			"functionName": "Dash",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"callFunction": "EnterPhysicsState",
+					"sid": 520861033625991
+				},
+				{
+					"id": "set-boolean-instvar",
+					"objectClass": "PlayerChair",
+					"sid": 826079004507358,
+					"parameters": {
+						"instance-variable": "Folded",
+						"value": "true"
+					}
+				},
+				{
+					"id": "set-velocity",
+					"objectClass": "PlayerChair",
+					"sid": 745853695814143,
+					"behaviorType": "Physics",
+					"parameters": {
+						"x-component": "1500*PlayerChair.Direction",
+						"y-component": "0"
+					}
+				},
+				{
+					"id": "set-enabled",
+					"objectClass": "PlayerChair",
+					"sid": 270965084393389,
+					"behaviorType": "Platform",
+					"parameters": {
+						"state": "disabled"
+					}
+				},
+				{
+					"id": "set-animation-frame",
+					"objectClass": "PlayerChair",
+					"sid": 738469057580197,
+					"parameters": {
+						"frame-number": "1"
+					}
+				},
+				{
+					"id": "add-to-instvar",
+					"objectClass": "PlayerChair",
+					"sid": 446426849108601,
+					"parameters": {
+						"instance-variable": "LeftDashes",
+						"value": "-1"
+					}
+				}
+			],
+			"sid": 518499029994548
+		},
+		{
+			"functionName": "ExitDash",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "set-boolean-instvar",
+					"objectClass": "PlayerChair",
+					"sid": 855600000586626,
+					"parameters": {
+						"instance-variable": "Folded",
+						"value": "false"
+					}
+				},
+				{
+					"id": "set-enabled",
+					"objectClass": "PlayerChair",
+					"sid": 555825112312163,
+					"behaviorType": "Platform",
+					"parameters": {
+						"state": "enabled"
+					}
+				},
+				{
+					"id": "set-animation-frame",
+					"objectClass": "PlayerChair",
+					"sid": 395524584108203,
+					"parameters": {
+						"frame-number": "0"
+					}
+				}
+			],
+			"sid": 127302289288490
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "key-is-down",
+					"objectClass": "Keyboard",
+					"sid": 625081307948478,
+					"parameters": {
+						"key": 68
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "simulate-control",
+					"objectClass": "PlayerChair",
+					"sid": 975748847424911,
+					"behaviorType": "Platform",
+					"parameters": {
+						"control": "right"
+					}
+				},
+				{
+					"callFunction": "SetDirectionRight",
+					"sid": 768463196508750
+				}
+			],
+			"sid": 530991071466024
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "key-is-down",
+					"objectClass": "Keyboard",
+					"sid": 361266271034718,
+					"parameters": {
+						"key": 65
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "simulate-control",
+					"objectClass": "PlayerChair",
+					"sid": 834630609269874,
+					"behaviorType": "Platform",
+					"parameters": {
+						"control": "left"
+					}
+				},
+				{
+					"callFunction": "SetDirectionLeft",
+					"sid": 361423784310037
+				}
+			],
+			"sid": 449615954480151
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "key-is-down",
+					"objectClass": "Keyboard",
+					"sid": 888012979172228,
+					"parameters": {
+						"key": 32
+					}
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "EnterPhysicsState",
+					"sid": 828260639377689
+				},
+				{
+					"id": "simulate-control",
+					"objectClass": "PlayerChair",
+					"sid": 346255929356725,
+					"behaviorType": "Platform",
+					"parameters": {
+						"control": "jump"
+					}
+				}
+			],
+			"sid": 487139454360112
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-key-pressed",
+					"objectClass": "Keyboard",
+					"sid": 521670509190013,
+					"parameters": {
+						"key": 70
+					}
+				},
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "PlayerChair",
+					"sid": 194957680885786,
+					"parameters": {
+						"instance-variable": "LeftDashes",
+						"comparison": 4,
+						"value": "0"
+					}
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "Dash",
+					"sid": 802044283165654
+				}
+			],
+			"sid": 194961783904476
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-key-released",
+					"objectClass": "Keyboard",
+					"sid": 274414152775679,
+					"parameters": {
+						"key": 79
+					}
+				}
+			],
+			"actions": [],
+			"sid": 770813657679045
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-boolean-instance-variable-set",
+					"objectClass": "PlayerChair",
+					"sid": 568054639478255,
+					"parameters": {
+						"instance-variable": "Folded"
+					},
+					"isInverted": true
+				},
+				{
+					"id": "is-on-floor",
+					"objectClass": "PlayerChair",
+					"sid": 152121987579852,
+					"behaviorType": "Platform"
+				}
+			],
+			"actions": [
+				{
+					"id": "set-enabled",
+					"objectClass": "PlayerChair",
+					"sid": 288377234503621,
+					"behaviorType": "Physics",
+					"parameters": {
+						"mode": "disabled"
+					}
+				},
+				{
+					"id": "set-angle",
+					"objectClass": "PlayerChair",
+					"sid": 392676153003020,
+					"parameters": {
+						"angle": "0"
+					}
+				},
+				{
+					"id": "set-instvar-value",
+					"objectClass": "PlayerChair",
+					"sid": 947490248330280,
+					"parameters": {
+						"instance-variable": "LeftDashes",
+						"value": "01"
+					}
+				}
+			],
+			"sid": 159492403682895
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-collision-with-another-object",
+					"objectClass": "PlayerChair",
+					"sid": 389434446148541,
+					"parameters": {
+						"object": "Block_Solid"
+					}
+				},
+				{
+					"id": "compare-two-values",
+					"objectClass": "System",
+					"sid": 162590362391480,
+					"parameters": {
+						"first-value": "abs(PlayerChair.Physics.VelocityX + PlayerChair.Physics.VelocityY)",
+						"comparison": 5,
+						"second-value": "100"
+					}
+				},
+				{
+					"id": "is-boolean-instance-variable-set",
+					"objectClass": "PlayerChair",
+					"sid": 353450989733703,
+					"parameters": {
+						"instance-variable": "Folded"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "play",
+					"objectClass": "Audio",
+					"sid": 280042230534553,
+					"parameters": {
+						"audio-file": {
+							"path": "metal-pipe-falling-sound-effect"
+						},
+						"loop": "not-looping",
+						"volume": "0",
+						"stereo-pan": "0",
+						"tag-optional": "\"\""
+					}
+				}
+			],
+			"sid": 818174397869975
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-two-values",
+					"objectClass": "System",
+					"sid": 833272824652982,
+					"parameters": {
+						"first-value": "abs(PlayerChair.Physics.VelocityX + PlayerChair.Physics.VelocityY)",
+						"comparison": 2,
+						"second-value": "10"
+					}
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "ExitDash",
+					"sid": 208001167749741
+				}
+			],
+			"sid": 287156671009968
+		}
+	],
 	"sid": 402757230156969
 }

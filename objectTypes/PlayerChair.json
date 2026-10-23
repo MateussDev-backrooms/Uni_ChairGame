@@ -1,0 +1,111 @@
+{
+	"name": "PlayerChair",
+	"plugin-id": "Sprite",
+	"sid": 406862676593125,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [
+		{
+			"name": "Folded",
+			"type": "boolean",
+			"desc": "",
+			"show": true,
+			"sid": 492738527744824
+		},
+		{
+			"name": "LeftDashes",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 546208905258172
+		},
+		{
+			"name": "Direction",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 671677806339124
+		}
+	],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Platform",
+			"name": "Platform",
+			"sid": 254821581990546
+		},
+		{
+			"behaviorId": "Physics",
+			"name": "Physics",
+			"sid": 915241900054570
+		}
+	],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 96,
+						"height": 128,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 1782547,
+						"collisionPoly": {
+							"points": [
+								0.19228515624999998,
+								0.2810546875,
+								0.7495442708333329,
+								0.2830078124999999,
+								0.7538736979166669,
+								1,
+								0.1984375,
+								1
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					},
+					{
+						"width": 96,
+						"height": 128,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 8332924,
+						"collisionPoly": {
+							"points": [
+								0.0020833333333333337,
+								0.4489501953125,
+								0.9941080729166668,
+								0.4630126953125,
+								0.9849934895833332,
+								0.7357910156250004,
+								0.006510416666666667,
+								0.7424072265625004
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 233097704519136,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			}
+		],
+		"subfolders": []
+	}
+}
