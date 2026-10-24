@@ -1,0 +1,66 @@
+{
+	"name": "Block_Beartrap",
+	"plugin-id": "Sprite",
+	"sid": 529006341110293,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [
+		{
+			"name": "Activated",
+			"type": "boolean",
+			"desc": "",
+			"show": true,
+			"sid": 110695586001688
+		}
+	],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Physics",
+			"name": "Physics",
+			"sid": 424605644081135
+		}
+	],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 64,
+						"height": 64,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 9527212,
+						"collisionPoly": {
+							"points": [
+								0.2498535156250002,
+								0.479833984375,
+								0.709375,
+								0.47607421874999983,
+								0.7119140625,
+								0.9698974609375001,
+								0.284423828125,
+								0.9701171875000003
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 885305654651688,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}

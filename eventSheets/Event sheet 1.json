@@ -2,6 +2,36 @@
 	"name": "Event sheet 1",
 	"events": [
 		{
+			"eventType": "variable",
+			"name": "DEFAULT_JUMP_STRENGTH",
+			"type": "number",
+			"initialValue": "650",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 479464956471762
+		},
+		{
+			"eventType": "variable",
+			"name": "DEFAULT_DASH_POWER",
+			"type": "number",
+			"initialValue": "1500",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 120975137558747
+		},
+		{
+			"eventType": "variable",
+			"name": "DEFAULT_PLAYER_SPEED",
+			"type": "number",
+			"initialValue": "330",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 864443658561799
+		},
+		{
 			"functionName": "SetDirectionRight",
 			"functionDescription": "",
 			"functionCategory": "",
@@ -102,22 +132,30 @@
 					"sid": 520861033625991
 				},
 				{
+					"id": "set-angle",
+					"objectClass": "PlayerChair",
+					"sid": 220422410455298,
+					"parameters": {
+						"angle": "0"
+					}
+				},
+				{
+					"id": "set-velocity",
+					"objectClass": "PlayerChair",
+					"sid": 548621801996997,
+					"behaviorType": "Physics",
+					"parameters": {
+						"x-component": "0",
+						"y-component": "0"
+					}
+				},
+				{
 					"id": "set-boolean-instvar",
 					"objectClass": "PlayerChair",
 					"sid": 826079004507358,
 					"parameters": {
 						"instance-variable": "Folded",
 						"value": "true"
-					}
-				},
-				{
-					"id": "set-velocity",
-					"objectClass": "PlayerChair",
-					"sid": 745853695814143,
-					"behaviorType": "Physics",
-					"parameters": {
-						"x-component": "1500*PlayerChair.Direction",
-						"y-component": "0"
 					}
 				},
 				{
@@ -144,6 +182,16 @@
 					"parameters": {
 						"instance-variable": "LeftDashes",
 						"value": "-1"
+					}
+				},
+				{
+					"id": "set-velocity",
+					"objectClass": "PlayerChair",
+					"sid": 606641663609469,
+					"behaviorType": "Physics",
+					"parameters": {
+						"x-component": "DEFAULT_DASH_POWER *(PlayerChair.IsBearTrapped ? 0.3 : 1) * PlayerChair.Direction",
+						"y-component": "0"
 					}
 				}
 			],
@@ -188,6 +236,28 @@
 				}
 			],
 			"sid": 127302289288490
+		},
+		{
+			"functionName": "OnDeath",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "load",
+					"objectClass": "System",
+					"sid": 155485967569154,
+					"parameters": {
+						"slot": "\"mysave\""
+					}
+				}
+			],
+			"sid": 985770747611493
 		},
 		{
 			"eventType": "block",
@@ -251,9 +321,9 @@
 			"eventType": "block",
 			"conditions": [
 				{
-					"id": "key-is-down",
+					"id": "on-key-pressed",
 					"objectClass": "Keyboard",
-					"sid": 888012979172228,
+					"sid": 140871673941683,
 					"parameters": {
 						"key": 32
 					}
@@ -274,7 +344,83 @@
 					}
 				}
 			],
-			"sid": 487139454360112
+			"sid": 487139454360112,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-boolean-instance-variable-set",
+							"objectClass": "PlayerChair",
+							"sid": 647593142715113,
+							"parameters": {
+								"instance-variable": "HasDoubleJump"
+							}
+						},
+						{
+							"id": "is-on-floor",
+							"objectClass": "PlayerChair",
+							"sid": 281467694628044,
+							"behaviorType": "Platform",
+							"isInverted": true
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "PlayerChair",
+							"sid": 289389104670283,
+							"parameters": {
+								"instance-variable": "DoubleJumpCount",
+								"comparison": 4,
+								"value": "0"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-vector-y",
+							"objectClass": "PlayerChair",
+							"sid": 960969701092227,
+							"behaviorType": "Platform",
+							"parameters": {
+								"vector-y": "-DEFAULT_JUMP_STRENGTH"
+							}
+						},
+						{
+							"id": "add-to-instvar",
+							"objectClass": "PlayerChair",
+							"sid": 741081252150898,
+							"parameters": {
+								"instance-variable": "DoubleJumpCount",
+								"value": "-1"
+							}
+						},
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 490332784257538,
+							"parameters": {
+								"audio-file": {
+									"path": "dry-fart"
+								},
+								"loop": "not-looping",
+								"volume": "0",
+								"stereo-pan": "0",
+								"tag-optional": "\"\""
+							}
+						},
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "PlayerChair",
+							"sid": 645985343575114,
+							"parameters": {
+								"instance-variable": "HasDoubleJump",
+								"value": "false"
+							}
+						}
+					],
+					"sid": 191550181399692
+				}
+			]
 		},
 		{
 			"eventType": "block",
@@ -366,6 +512,15 @@
 						"instance-variable": "LeftDashes",
 						"value": "01"
 					}
+				},
+				{
+					"id": "set-instvar-value",
+					"objectClass": "PlayerChair",
+					"sid": 806952801338681,
+					"parameters": {
+						"instance-variable": "DoubleJumpCount",
+						"value": "1"
+					}
 				}
 			],
 			"sid": 159492403682895
@@ -384,11 +539,11 @@
 				{
 					"id": "compare-two-values",
 					"objectClass": "System",
-					"sid": 162590362391480,
+					"sid": 406566270849426,
 					"parameters": {
 						"first-value": "abs(PlayerChair.Physics.VelocityX + PlayerChair.Physics.VelocityY)",
 						"comparison": 5,
-						"second-value": "100"
+						"second-value": "200"
 					}
 				},
 				{
@@ -414,6 +569,10 @@
 						"stereo-pan": "0",
 						"tag-optional": "\"\""
 					}
+				},
+				{
+					"callFunction": "OnBeartrapRemoved",
+					"sid": 287468781458203
 				}
 			],
 			"sid": 818174397869975
@@ -439,6 +598,468 @@
 				}
 			],
 			"sid": 287156671009968
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-overlapping-another-object",
+					"objectClass": "PlayerChair",
+					"sid": 169366582134844,
+					"parameters": {
+						"object": "Block_Spring"
+					}
+				},
+				{
+					"id": "is-boolean-instance-variable-set",
+					"objectClass": "Block_Spring",
+					"sid": 490122446856504,
+					"parameters": {
+						"instance-variable": "Activated"
+					},
+					"isInverted": true
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "EnterPhysicsState",
+					"sid": 185432444791256
+				},
+				{
+					"id": "set-vector-y",
+					"objectClass": "PlayerChair",
+					"sid": 141669502063856,
+					"behaviorType": "Platform",
+					"parameters": {
+						"vector-y": "-1500"
+					}
+				},
+				{
+					"id": "apply-force",
+					"objectClass": "PlayerChair",
+					"sid": 796808970696654,
+					"behaviorType": "Physics",
+					"parameters": {
+						"force-x": "0",
+						"force-y": "-1500",
+						"image-point": "0"
+					}
+				},
+				{
+					"id": "set-boolean-instvar",
+					"objectClass": "Block_Spring",
+					"sid": 281351695216586,
+					"parameters": {
+						"instance-variable": "Activated",
+						"value": "true"
+					}
+				},
+				{
+					"id": "wait",
+					"objectClass": "System",
+					"sid": 311489897433530,
+					"parameters": {
+						"seconds": "1.0",
+						"use-timescale": true
+					}
+				},
+				{
+					"id": "set-boolean-instvar",
+					"objectClass": "Block_Spring",
+					"sid": 940911964482545,
+					"parameters": {
+						"instance-variable": "Activated",
+						"value": "false"
+					}
+				}
+			],
+			"sid": 911413942725892
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-overlapping-another-object",
+					"objectClass": "PlayerChair",
+					"sid": 514006179144402,
+					"parameters": {
+						"object": "Block_Beartrap"
+					}
+				},
+				{
+					"id": "is-boolean-instance-variable-set",
+					"objectClass": "Block_Beartrap",
+					"sid": 413455249097971,
+					"parameters": {
+						"instance-variable": "Activated"
+					},
+					"isInverted": true
+				}
+			],
+			"actions": [
+				{
+					"id": "set-position",
+					"objectClass": "Block_Beartrap",
+					"sid": 646277583418946,
+					"parameters": {
+						"x": "PlayerChair.ImagePointX(1)",
+						"y": "PlayerChair.ImagePointY(1)"
+					}
+				},
+				{
+					"id": "add-child",
+					"objectClass": "PlayerChair",
+					"sid": 775931110119938,
+					"parameters": {
+						"child": "Block_Beartrap",
+						"transform-x": true,
+						"transform-y": true,
+						"transform-z-elevation": true,
+						"transform-w": true,
+						"transform-h": true,
+						"transform-d": true,
+						"transform-a": true,
+						"transform-o": false,
+						"transform-visibility": false,
+						"destroy-with-parent": false
+					}
+				},
+				{
+					"id": "set-boolean-instvar",
+					"objectClass": "Block_Beartrap",
+					"sid": 605872477362727,
+					"parameters": {
+						"instance-variable": "Activated",
+						"value": "true"
+					}
+				},
+				{
+					"id": "play",
+					"objectClass": "Audio",
+					"sid": 831125783962234,
+					"parameters": {
+						"audio-file": {
+							"path": "chomp-chomp"
+						},
+						"loop": "not-looping",
+						"volume": "0",
+						"stereo-pan": "0",
+						"tag-optional": "\"\""
+					}
+				},
+				{
+					"id": "set-collisions-enabled",
+					"objectClass": "Block_Beartrap",
+					"sid": 412599628979784,
+					"parameters": {
+						"collisions": "disabled"
+					}
+				},
+				{
+					"callFunction": "OnBeartrapAttached",
+					"sid": 628573298294764
+				},
+				{
+					"id": "enabledisable-collisions",
+					"objectClass": "Block_Beartrap",
+					"sid": 399152324378961,
+					"behaviorType": "Physics",
+					"parameters": {
+						"object": "Block_Solid",
+						"state": "disable"
+					}
+				}
+			],
+			"sid": 300058707093015
+		},
+		{
+			"functionName": "OnBeartrapAttached",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "set-max-speed",
+					"objectClass": "PlayerChair",
+					"sid": 139663084900454,
+					"behaviorType": "Platform",
+					"parameters": {
+						"max-speed": "DEFAULT_PLAYER_SPEED/3"
+					}
+				},
+				{
+					"id": "set-jump-strength",
+					"objectClass": "PlayerChair",
+					"sid": 920481483374577,
+					"behaviorType": "Platform",
+					"parameters": {
+						"jump-strength": "DEFAULT_JUMP_STRENGTH/4"
+					}
+				},
+				{
+					"id": "set-boolean-instvar",
+					"objectClass": "PlayerChair",
+					"sid": 513613518139200,
+					"parameters": {
+						"instance-variable": "IsBearTrapped",
+						"value": "true"
+					}
+				}
+			],
+			"sid": 138908353738255
+		},
+		{
+			"functionName": "OnBeartrapRemoved",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "set-max-speed",
+					"objectClass": "PlayerChair",
+					"sid": 673809842659967,
+					"behaviorType": "Platform",
+					"parameters": {
+						"max-speed": "DEFAULT_PLAYER_SPEED"
+					}
+				},
+				{
+					"id": "set-jump-strength",
+					"objectClass": "PlayerChair",
+					"sid": 800237739579495,
+					"behaviorType": "Platform",
+					"parameters": {
+						"jump-strength": "DEFAULT_JUMP_STRENGTH"
+					}
+				},
+				{
+					"id": "set-boolean-instvar",
+					"objectClass": "PlayerChair",
+					"sid": 285335447704612,
+					"parameters": {
+						"instance-variable": "IsBearTrapped",
+						"value": "false"
+					}
+				}
+			],
+			"sid": 171059027408739,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "has-children",
+							"objectClass": "PlayerChair",
+							"sid": 263444583892605
+						},
+						{
+							"id": "pick-children",
+							"objectClass": "PlayerChair",
+							"sid": 629947636781365,
+							"parameters": {
+								"child": "Block_Beartrap",
+								"which": "own"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "remove-from-parent",
+							"objectClass": "Block_Beartrap",
+							"sid": 927207791408081
+						},
+						{
+							"id": "set-enabled",
+							"objectClass": "Block_Beartrap",
+							"sid": 753727958458052,
+							"behaviorType": "Physics",
+							"parameters": {
+								"mode": "enabled"
+							}
+						}
+					],
+					"sid": 314959737322053
+				}
+			]
+		},
+		{
+			"eventType": "comment",
+			"text": "The center of this volume is exactly where the camera will snap to. TODO: Smooth camera"
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-overlapping-another-object",
+					"objectClass": "PlayerChair",
+					"sid": 725819731189511,
+					"parameters": {
+						"object": "Util_CameraVolume"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "scroll-to-object",
+					"objectClass": "System",
+					"sid": 247421673799644,
+					"parameters": {
+						"object": "Util_CameraVolume"
+					}
+				}
+			],
+			"sid": 446435164736061
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-overlapping-another-object",
+					"objectClass": "PlayerChair",
+					"sid": 929063137871983,
+					"parameters": {
+						"object": "Block_DoubleJump"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-boolean-instvar",
+					"objectClass": "PlayerChair",
+					"sid": 851698523567580,
+					"parameters": {
+						"instance-variable": "HasDoubleJump",
+						"value": "true"
+					}
+				},
+				{
+					"id": "destroy",
+					"objectClass": "Block_DoubleJump",
+					"sid": 186996098121690
+				}
+			],
+			"sid": 734204519063531
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-collision-with-another-object",
+					"objectClass": "PlayerChair",
+					"sid": 979626693044286,
+					"parameters": {
+						"object": "Block_Spike"
+					}
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "OnDeath",
+					"sid": 889381676586257
+				}
+			],
+			"sid": 645840815624334
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-collision-with-another-object",
+					"objectClass": "PlayerChair",
+					"sid": 435322835515072,
+					"parameters": {
+						"object": "Block_Water"
+					}
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "OnDeath",
+					"sid": 824634917417871
+				}
+			],
+			"sid": 635662419244931
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-overlapping-another-object",
+					"objectClass": "PlayerChair",
+					"sid": 103489383182354,
+					"parameters": {
+						"object": "Block_Checkpoint"
+					}
+				},
+				{
+					"id": "is-boolean-instance-variable-set",
+					"objectClass": "Block_Checkpoint",
+					"sid": 525033499627218,
+					"parameters": {
+						"instance-variable": "HasSaved"
+					},
+					"isInverted": true
+				}
+			],
+			"actions": [
+				{
+					"id": "set-boolean-instvar",
+					"objectClass": "Block_Checkpoint",
+					"sid": 935269560806741,
+					"parameters": {
+						"instance-variable": "HasSaved",
+						"value": "true"
+					}
+				},
+				{
+					"id": "set-animation-frame",
+					"objectClass": "Block_Checkpoint",
+					"sid": 802189323431961,
+					"parameters": {
+						"frame-number": "1"
+					}
+				},
+				{
+					"id": "save",
+					"objectClass": "System",
+					"sid": 596326368932247,
+					"parameters": {
+						"slot": "\"mysave\""
+					}
+				}
+			],
+			"sid": 716408490200046
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 754913316005652
+				}
+			],
+			"actions": [
+				{
+					"id": "save",
+					"objectClass": "System",
+					"sid": 203393997263649,
+					"parameters": {
+						"slot": "\"mysave\""
+					}
+				}
+			],
+			"sid": 378922417756618
 		}
 	],
 	"sid": 402757230156969

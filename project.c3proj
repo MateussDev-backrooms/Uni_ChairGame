@@ -47,6 +47,13 @@
 			"name": "Solid",
 			"author": "Scirra",
 			"bundled": false
+		},
+		{
+			"type": "effect",
+			"id": "warpobject",
+			"name": "Warp object",
+			"author": "Scirra",
+			"bundled": false
 		}
 	],
 	"uniqueId": "bbf9akhuaf0",
@@ -55,7 +62,14 @@
 			"PlayerChair",
 			"Block_Solid",
 			"Keyboard",
-			"Audio"
+			"Audio",
+			"Block_Spring",
+			"Block_Beartrap",
+			"Util_CameraVolume",
+			"Block_Spike",
+			"Block_Checkpoint",
+			"Block_Water",
+			"Block_DoubleJump"
 		],
 		"subfolders": []
 	},
@@ -89,6 +103,22 @@
 					"name": "metal-pipe-falling-sound-effect.webm",
 					"type": "audio/webm; codecs=opus",
 					"sid": 431435321197747,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "chomp-chomp.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 116179227025625,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "dry-fart.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 611477653546039,
 					"file-info": {
 						"purpose": "none"
 					}

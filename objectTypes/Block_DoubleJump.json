@@ -1,0 +1,78 @@
+{
+	"name": "Block_DoubleJump",
+	"plugin-id": "Sprite",
+	"sid": 244414715188763,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 128,
+						"height": 128,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 5356782,
+						"collisionPoly": {
+							"points": [
+								0.328460693359375,
+								0.272491455078125,
+								0.626251220703125,
+								0.2696533203125,
+								0.636077880859375,
+								0.69866943359375,
+								0.351165771484375,
+								0.682891845703125
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					},
+					{
+						"width": 128,
+						"height": 128,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 2217581,
+						"collisionPoly": {
+							"points": [
+								0.328460693359375,
+								0.272491455078125,
+								0.626251220703125,
+								0.2696533203125,
+								0.636077880859375,
+								0.69866943359375,
+								0.351165771484375,
+								0.682891845703125
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 878184022188168,
+				"name": "Animation 1",
+				"isLooping": true,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 15
+			}
+		],
+		"subfolders": []
+	}
+}

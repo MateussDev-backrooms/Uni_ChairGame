@@ -25,6 +25,27 @@
 			"desc": "",
 			"show": true,
 			"sid": 671677806339124
+		},
+		{
+			"name": "IsBearTrapped",
+			"type": "boolean",
+			"desc": "",
+			"show": true,
+			"sid": 348874359845343
+		},
+		{
+			"name": "HasDoubleJump",
+			"type": "boolean",
+			"desc": "",
+			"show": true,
+			"sid": 137997853284368
+		},
+		{
+			"name": "DoubleJumpCount",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 177479673841489
 		}
 	],
 	"behaviorTypes": [
@@ -67,6 +88,13 @@
 							]
 						},
 						"useCollisionPoly": true,
+						"imagePoints": [
+							{
+								"name": "BearTrap",
+								"x": 0.5520833333333334,
+								"y": 0.671875
+							}
+						],
 						"duration": 1,
 						"tag": ""
 					},
