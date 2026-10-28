@@ -16,7 +16,7 @@
 		{
 			"type": "plugin",
 			"id": "Keyboard",
-			"name": "Keyboard",
+			"name": "Tastatur",
 			"author": "Scirra",
 			"bundled": false
 		},
@@ -30,28 +30,35 @@
 		{
 			"type": "behavior",
 			"id": "Physics",
-			"name": "Physics",
+			"name": "Physik",
 			"author": "Scirra",
 			"bundled": false
 		},
 		{
 			"type": "behavior",
 			"id": "Platform",
-			"name": "Platform",
+			"name": "Plattform",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "scrollto",
+			"name": "Scrolle zu",
 			"author": "Scirra",
 			"bundled": false
 		},
 		{
 			"type": "behavior",
 			"id": "solid",
-			"name": "Solid",
+			"name": "Festkörper",
 			"author": "Scirra",
 			"bundled": false
 		},
 		{
 			"type": "effect",
 			"id": "warpobject",
-			"name": "Warp object",
+			"name": "Welle Objekt",
 			"author": "Scirra",
 			"bundled": false
 		}
@@ -82,7 +89,8 @@
 	},
 	"layouts": {
 		"items": [
-			"Layout 1"
+			"Layout 1",
+			"Tutorial"
 		],
 		"subfolders": []
 	},
