@@ -249,12 +249,70 @@
 			"conditions": [],
 			"actions": [
 				{
+					"id": "play",
+					"objectClass": "Audio",
+					"sid": 537030313002373,
+					"parameters": {
+						"audio-file": {
+							"path": "deltarune-explosion"
+						},
+						"loop": "not-looping",
+						"volume": "0",
+						"stereo-pan": "0",
+						"tag-optional": "\"\""
+					}
+				},
+				{
+					"id": "set-enabled",
+					"objectClass": "PlayerChair",
+					"sid": 335395661497109,
+					"behaviorType": "Platform",
+					"parameters": {
+						"state": "disabled"
+					}
+				},
+				{
+					"callFunction": "EnterPhysicsState",
+					"sid": 722560496341156
+				},
+				{
+					"id": "lock-keyboard",
+					"objectClass": "Keyboard",
+					"sid": 554966213077106,
+					"parameters": {
+						"keys": "\"KeyW,KeyA,KeyS,KeyD\""
+					}
+				},
+				{
+					"id": "set-animation",
+					"objectClass": "PlayerChair",
+					"sid": 767994034738529,
+					"parameters": {
+						"animation": "\"Dead\"",
+						"from": "beginning"
+					}
+				},
+				{
+					"id": "wait",
+					"objectClass": "System",
+					"sid": 570950632468832,
+					"parameters": {
+						"seconds": "1.0",
+						"use-timescale": true
+					}
+				},
+				{
 					"id": "load",
 					"objectClass": "System",
-					"sid": 155485967569154,
+					"sid": 831881560937603,
 					"parameters": {
 						"slot": "\"mysave\""
 					}
+				},
+				{
+					"id": "unlock-keyboard",
+					"objectClass": "Keyboard",
+					"sid": 496879507571389
 				}
 			],
 			"sid": 985770747611493
@@ -1035,6 +1093,20 @@
 					"sid": 596326368932247,
 					"parameters": {
 						"slot": "\"mysave\""
+					}
+				},
+				{
+					"id": "play",
+					"objectClass": "Audio",
+					"sid": 140393383596467,
+					"parameters": {
+						"audio-file": {
+							"path": "yipeeee"
+						},
+						"loop": "not-looping",
+						"volume": "0",
+						"stereo-pan": "0",
+						"tag-optional": "\"\""
 					}
 				}
 			],

@@ -50,13 +50,6 @@
 		},
 		{
 			"type": "behavior",
-			"id": "scrollto",
-			"name": "Scroll To",
-			"author": "Scirra",
-			"bundled": false
-		},
-		{
-			"type": "behavior",
 			"id": "solid",
 			"name": "Solid",
 			"author": "Scirra",
@@ -84,7 +77,10 @@
 			"Block_Checkpoint",
 			"Block_Water",
 			"Block_DoubleJump",
-			"Victory"
+			"Victory",
+			"Text",
+			"Text2",
+			"Sprite"
 		],
 		"subfolders": []
 	},
@@ -136,6 +132,22 @@
 					"name": "dry-fart.webm",
 					"type": "audio/webm; codecs=opus",
 					"sid": 611477653546039,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "yipeeee.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 212170138706671,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "deltarune-explosion.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 421596054124730,
 					"file-info": {
 						"purpose": "none"
 					}

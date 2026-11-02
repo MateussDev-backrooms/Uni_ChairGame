@@ -56,11 +56,6 @@
 								"bullet": false,
 								"enabled": false
 							}
-						},
-						"ScrolleZu": {
-							"properties": {
-								"enabled": true
-							}
 						}
 					},
 					"materialSurfaceType": "smooth",
